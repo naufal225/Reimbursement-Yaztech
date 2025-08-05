@@ -15,7 +15,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'role:employee'])->group(function () {
     Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
-    Route::get('/employee/reimbursement', fn() => view('employee.reimbursement'))->name('employee.reimbursement');
+    Route::get('/employee/reimbursement', [EmployeeController::class, 'create'])->name('employee.reimbursement');
+    Route::post('/employee/reimbursement', [EmployeeController::class, 'store'])->name('employee.reimbursement');
     Route::get('/employee/history', fn() => view('employee.history'))->name('employee.history');
 });
 

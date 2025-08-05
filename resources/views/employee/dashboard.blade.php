@@ -112,7 +112,7 @@
                 <p class="text-sm text-gray-600">Track your reimbursement requests</p>
             </div>
             {{-- {{ route('reimbursements.create') }} --}}
-            <a href=""
+            <a href="/employee/reimbursement"
                 class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -135,7 +135,7 @@
                                 Request ID
                             </th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Category
+                                Agenda
                             </th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Amount
@@ -160,11 +160,11 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <div class="flex items-center">
                                     <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
-                                    {{ $item->category }}
+                                    {{ $item->agenda }}
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
-                                ${{ number_format($item->amount, 2) }}
+                                Rp.{{ number_format($item->total, 2) }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ \Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
@@ -190,7 +190,8 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('reimbursements.show', $item->id) }}"
+                                {{-- {{ route('reimbursements.show', $item->id) }} --}}
+                                <a href=""
                                     class="text-blue-600 hover:text-blue-900 transition-colors duration-150">View
                                     Details</a>
                             </td>
@@ -210,7 +211,9 @@
             <div class="bg-gray-50 px-6 py-3 border-t border-gray-200">
                 <div class="flex items-center justify-between">
                     <div class="mt-4">
-                        {{ $reimbursements->links() }}
+                        <div class="flex space-x-2">
+                            {{ $reimbursements->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
